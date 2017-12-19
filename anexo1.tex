@@ -1,0 +1,13 @@
+\secc{Anexo 1}{Otros comandos útiles}
+
+\begin{itemize}
+	\item \com[k]{kill}{} para matar la ejecución actual sin salir de GDB. 
+	\item \com{file}{nombreDelArchivoEjecutable} para seleccionar el programa a depurar, luego de haber hecho un kill o de haber entrado a GDB sin especificar nombre de archivo.
+	\item \com{where}{} para ver el punto en que estamos parados durante una sesión de depuración (archivo, función, línea) por si nos perdimos.
+	\item \com{break}{nombreDeFunción} para pausar la ejecución cada vez que aparezca un llamado a una función determinada.
+	\item \com{break}{$\pm$númeroDeLíneas} para indicar la línea del punto de interrupción con un desplazamiento desde la línea actual.
+	\item \com{tbreak}{} es un punto de interrupción temporario que desaparece luego de ser alcanzado una vez. Acepta los mismos parámetros que el no temporario. La instrucción start mencionada anteriormente es equivalente a poner un tbreak en la primer línea del programa y luego ejecutar run.
+	\item \com{finish}{} para avanzar directamente hasta el fin de la función actual. Si hicimos un step pero no queremos recorrer la función completa, en lugar de tener que meter muchos next podemos hacer finish.
+	\item \com{delete}{} para eliminar todos los puntos de interrupción (incluye aquellos creados con break, tbreak y watch).
+	\item \com{up}{} es similar a backtrace (explicado en el caso A) pero muestra un solo nivel por vez y va subiendo de nivel en ejecuciones sucesivas.
+\end{itemize}

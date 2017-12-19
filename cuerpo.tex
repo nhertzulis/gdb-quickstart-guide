@@ -1,0 +1,44 @@
+\textbf{\underline{[Mini guía] Inicio rápido a GDB}}\bigskip
+
+Guía de inicio rápido a la depuración de errores de código escrito en C o C++ con GDB. Esta guía está pensada para ser seguida paso a paso al mismo tiempo que se ejecutan los comandos en GDB. El anexo 1 contiene algunos comandos útiles que no fueron explicados en las instrucciones principales. El anexo 2 contiene comandos extra para depurar código assembly, cuya lectura se sugiere al terminar el paso 5 del caso B.
+
+\secc{Caso A}{El programa explota}\bigskip
+
+Decimos informalmente que explota cuando la ejecución termina abruptamente a causa de un error. La idea es correr el programa con GDB para que este nos ayude a encontrar el punto del código que genera el error.\medskip
+
+\begin{enumerate}
+
+\item \com{gdb}{nombreDelArchivoEjecutable}
+\item \com[r]{run}{} para correr el programa.
+\item \com[bt]{backtrace}{} para ver toda la jerarquía de llamados de funciones y así identificar la porción de código que explota.
+\item \com[q]{quit}{} para salir de GDB y, si no logramos identificar el error, proceder al caso B.
+
+\end{enumerate}
+
+\secc{Caso B}{El programa funciona mal}\bigskip
+
+Decimos que funciona mal cuando no funciona de la manera esperada (explote o no). La idea es poner puntos de interrupción (\textit{breakpoints} en inglés) en el código y luego ir avanzando de a una línea por vez para ver cómo avanza la ejecución, al mismo tiempo que consultamos los valores de las variables con el fin último de identificar el problema.\medskip
+
+\begin{enumerate}
+
+\item Indicar al compilador de código C/C++ (GCC) la opción “-g” para que genere la información de depuración que utiliza GDB (sin esto no funcionan los puntos de interrupción). En caso de tener código assembly, también indicar al compilador NASM la opción “-g”.
+\item \com{gdb}{nombreDelArchivoEjecutable}
+\item \com[b]{break}{númeroDeLínea} para indicar que la ejecución debe parar en la línea indicada del archivo principal. Se pueden poner muchos puntos de interrupción.\newline
+Si se quiere un punto de interrupción en un archivo que no sea el principal (que no tenga la función main) hay que poner el nombre antes de indicar la línea, por ejemplo: break MiArchivo.h:112
+\item \com[r]{run}{} para ejecutar el programa hasta terminar o hasta encontrar el primer punto de interrupción.\newline
+\com{start}{} es similar a run pero deja el programa parado en la primera línea. Puede ser útil en caso de que el programa explote y queramos recorrerlo desde el comienzo.
+\item Depurando:
+    \begin{itemize}
+    \item \comal[n]{next}{} para ejecutar la línea actual y dejar la ejecución parada en la siguiente línea.
+    \item \comal[s]{step} es igual que next con la diferencia que si la línea actual es un llamado a función, step se mete adentro del cuerpo de la misma (next ejecuta todo el cuerpo de la función en un solo paso).
+    \item \comal[c]{continue} para saltar directamente al siguiente punto de interrupción (si hubiere) o al fin del programa.
+    \item \comal[p]{print}{nombreDeUnaVariable} para ver el valor actual de la variable cuando la ejecución llega a un punto de interrupción.
+    \item \comal[b]{break}{X} para ir metiendo más puntos de interrupción.
+    \item \comal{watch}{condición} es un continue condicional; el programa se ejecuta sin parar mientras la condición sea falsa y queda parado cuando sea verdadera. Muy útil para ciclos, por ejemplo: watch i > 60
+    \end{itemize}
+\item \com[q]{quit}{} para salir de GDB.
+
+\end{enumerate}\medskip
+
+Las instrucciones anteriores muestran algunos comandos que se pueden utilizar. Si durante una sesión de depuración de código les surge una necesidad que no fue cubierta en esta guía o se les ocurre algo que suene razonable o les gustaría poder hacer, posiblemente ya esté implementado. Utilizar un buscador web o tipear help desde la consola de GDB para consultar el manual. Para ver cómo se usa un comando, tipear \com{help}{nombreDeComando}.
+

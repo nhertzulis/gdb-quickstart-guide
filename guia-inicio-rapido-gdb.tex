@@ -1,0 +1,25 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{xifthen}
+\usepackage[margin=2cm]{geometry}
+
+\setlength{\parindent}{0cm}
+
+\title{Guía de inicio rápido a la depuración de errores de código con GDB}
+\author{Nicolás Hertzulis}
+
+% Comando GDB: \com[nombreCorto]{nombreComando}{parámetro}
+\newcommand{\com}[3][]{\textbf{#2}\ifthenelse{\isempty{#3}}{}{ \textit{#3}}\ifthenelse{\isempty{#1}}{}{ (más corto: \textbf{#1}\ifthenelse{\isempty{#3}}{}{ \textit{#3}})}}
+
+% Comando GDB (forma alternativa): \comal[nombreCorto]{nombreComando}{parámetro}
+\newcommand{\comal}[3][]{\textbf{#2}\ifthenelse{\isempty{#3}}{}{ \textit{#3}}\ifthenelse{\isempty{#1}}{}{ o \textbf{#1}\ifthenelse{\isempty{#3}}{}{ \textit{#3}}}}
+
+% Sección del documento
+\newcommand{\secc}[2]{\bigskip\textbf{#1:} \underline{#2}} 
+
+\begin{document}
+\input{cuerpo}
+\input{anexo1}
+\input{anexo2}
+\end{document}

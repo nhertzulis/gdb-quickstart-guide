@@ -1,0 +1,12 @@
+\secc{Anexo 2}{Comandos para trabajar con Assembly}
+
+\begin{itemize}
+	\item \com[ni]{next instruction}{} equivalente a next para programas de assembly.
+	\item \com[si]{step instruction}{} equivalente a step para programas de assembly.
+	\item \com[b]{break}{nombreDeEtiqueta} para pausar la ejecución cada vez que el programa llegue a la etiqueta indicada. Por ejemplo: break .ciclo
+	\item \com[p]{print}{\$nombreDeRegistro} para ver el contenido de un registro, por ejemplo: p \$rax para ver el contenido del registro RAX.
+	\item \com[ir]{info registers}{} para ver el contenido de los registros todos juntos (usar \com{info all-registers}{} para ver los XMMs y otros registros adicionales).
+	\item \com[p printf(“\%s”, \$nombreDeRegistro)]{print printf(“\%s”, \$nombreDeRegistro)}{} para mostrar en pantalla el valor de un string con formato C (terminado en cero). Por ejemplo, si el registro RDI apunta a un string, podemos mostrarlo con \textbf{p printf(“\%s”, \$rdi)}
+	\item ¿Cómo ver los valores de un struct de C desde código ASM? Ejemplo: Tenemos en el registro RDI un puntero a un struct persona. \textbf{print *(struct persona*) \$rdi} muestra el struct y \textbf{print (*(struct persona*) \$rdi).dni} muestra el DNI. También podemos ver structs anidados.
+
+\end{itemize}
