@@ -4,4 +4,6 @@ Esta guía surgió como un apunte que hice para autoreferencia mientras aprendí
 
 No pretende ser una guía super extensa de GDB sino más bien es acotada y está estructurada de manera simple y en forma de recetas para que el usuario empiece a depurar código rápidamente.
 
+Las correcciones, mejoras de redacción, nuevos comandos son bienvenidas y muy apreciadas. Hacer un pull request o enviar un mail a <nicohertzulis@gmail.com>.
+
 
