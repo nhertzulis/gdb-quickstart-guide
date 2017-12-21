@@ -30,8 +30,8 @@ Si se quiere un punto de interrupción en un archivo que no sea el principal (qu
 \item Depurando:
     \begin{itemize}
     \item \comal[n]{next}{} para ejecutar la línea actual y dejar la ejecución parada en la siguiente línea.
-    \item \comal[s]{step} es igual que next con la diferencia que si la línea actual es un llamado a función, step se mete adentro del cuerpo de la misma (next ejecuta todo el cuerpo de la función en un solo paso).
-    \item \comal[c]{continue} para saltar directamente al siguiente punto de interrupción (si hubiere) o al fin del programa.
+    \item \comal[s]{step}{} es igual que next con la diferencia que si la línea actual es un llamado a función, step se mete adentro del cuerpo de la misma (next ejecuta todo el cuerpo de la función en un solo paso).
+    \item \comal[c]{continue}{} para saltar directamente al siguiente punto de interrupción (si hubiere) o al fin del programa.
     \item \comal[p]{print}{nombreDeUnaVariable} para ver el valor actual de la variable cuando la ejecución llega a un punto de interrupción.
     \item \comal[b]{break}{X} para ir metiendo más puntos de interrupción.
     \item \comal{watch}{condición} es un continue condicional; el programa se ejecuta sin parar mientras la condición sea falsa y queda parado cuando sea verdadera. Muy útil para ciclos, por ejemplo: watch i > 60
